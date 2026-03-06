@@ -6,46 +6,57 @@ public class AddressBook {
 
     private ArrayList<Contact> contactList = new ArrayList<>();
 
-    // UC2
+    // UC7 - Prevent duplicate contact
     public void addContact(Contact contact) {
+
+        for (Contact existingContact : contactList) {
+
+            if (existingContact.getFirstName()
+                    .equalsIgnoreCase(contact.getFirstName())) {
+
+                System.out.println("Contact with this name already exists.");
+                return;
+            }
+        }
+
         contactList.add(contact);
         System.out.println("Contact added successfully.");
     }
 
     // Display contacts
     public void displayContacts() {
+
         for (Contact contact : contactList) {
             System.out.println(contact);
         }
     }
 
-    // UC3 - Edit contact
+    // Edit contact
     public void editContact(String firstName, Contact updatedContact) {
-        boolean found = false;
 
         for (int i = 0; i < contactList.size(); i++) {
-            if (contactList.get(i).getFirstName().equalsIgnoreCase(firstName)) {
+
+            if (contactList.get(i).getFirstName()
+                    .equalsIgnoreCase(firstName)) {
+
                 contactList.set(i, updatedContact);
-                found = true;
                 System.out.println("Contact updated successfully.");
-                break;
+                return;
             }
         }
 
-        if (!found) {
-            System.out.println("Contact not found.");
-        }
+        System.out.println("Contact not found.");
     }
 
-    // UC4 - Delete contact
+    // Delete contact
     public void deleteContact(String firstName) {
+
         boolean removed = contactList.removeIf(contact ->
                 contact.getFirstName().equalsIgnoreCase(firstName));
 
-        if (removed) {
+        if (removed)
             System.out.println("Contact deleted successfully.");
-        } else {
+        else
             System.out.println("Contact not found.");
-        }
     }
 }
