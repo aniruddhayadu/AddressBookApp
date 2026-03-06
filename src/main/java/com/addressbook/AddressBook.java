@@ -132,4 +132,36 @@ public class AddressBook {
             System.out.println("No contacts found in state: " + state);
         }
     }
+    
+    
+ // UC10 - Count contacts by City
+    public void countByCity(String city) {
+
+        int count = 0;
+
+        for (Contact contact : contactList) {
+
+            if (contact.getCity().equalsIgnoreCase(city)) {
+                count++;
+            }
+        }
+
+        System.out.println("Number of contacts in city " + city + " : " + count);
+    }
+
+
+    // UC10 - Count contacts by State
+    public void countByState(String state) {
+
+        int count = 0;
+
+        for (Contact contact : contactList) {
+
+            if (contact.getState().equalsIgnoreCase(state)) {
+                count++;
+            }
+        }
+
+        System.out.println("Number of contacts in state " + state + " : " + count);
+    }
 }

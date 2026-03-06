@@ -24,7 +24,9 @@ public class AddressBookMain {
             System.out.println("6 Search by State");
             System.out.println("7 View Persons by City");
             System.out.println("8 View Persons by State");
-            System.out.println("9 Exit");
+            System.out.println("9 Count persons by City");
+            System.out.println("10 Count persons by State");
+            System.out.println("11 Exit");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
