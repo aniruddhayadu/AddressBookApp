@@ -1,5 +1,6 @@
 package com.addressbook;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -7,7 +8,8 @@ public class AddressBookMain {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        AddressBook addressBook = new AddressBook();
+
+        HashMap<String, AddressBook> addressBookMap = new HashMap<>();
 
         System.out.println("Welcome to Address Book Program");
 
@@ -16,11 +18,10 @@ public class AddressBookMain {
         while (!exit) {
 
             System.out.println("\nChoose an option:");
-            System.out.println("1. Add Contact");
-            System.out.println("2. Display Contacts");
-            System.out.println("3. Edit Contact");
-            System.out.println("4. Delete Contact");
-            System.out.println("5. Exit");
+            System.out.println("1. Create New Address Book");
+            System.out.println("2. Add Contact");
+            System.out.println("3. Display Contacts");
+            System.out.println("4. Exit");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -28,6 +29,27 @@ public class AddressBookMain {
             switch (choice) {
 
                 case 1:
+
+                    System.out.print("Enter Address Book Name: ");
+                    String bookName = scanner.nextLine();
+
+                    addressBookMap.put(bookName, new AddressBook());
+
+                    System.out.println("Address Book created: " + bookName);
+
+                    break;
+
+                case 2:
+
+                    System.out.print("Enter Address Book Name: ");
+                    String name = scanner.nextLine();
+
+                    AddressBook addressBook = addressBookMap.get(name);
+
+                    if (addressBook == null) {
+                        System.out.println("Address Book not found.");
+                        break;
+                    }
 
                     System.out.print("Enter First Name: ");
                     String firstName = scanner.nextLine();
@@ -59,71 +81,29 @@ public class AddressBookMain {
 
                     break;
 
-                case 2:
-
-                    System.out.println("\nContact List:");
-                    addressBook.displayContacts();
-
-                    break;
-
                 case 3:
 
-                    System.out.print("Enter First Name to edit: ");
-                    String editName = scanner.nextLine();
+                    System.out.print("Enter Address Book Name: ");
+                    String displayBook = scanner.nextLine();
 
-                    System.out.println("Enter new details:");
+                    AddressBook displayAddressBook = addressBookMap.get(displayBook);
 
-                    System.out.print("Enter New First Name: ");
-                    String newFirstName = scanner.nextLine();
-
-                    System.out.print("Enter New Last Name: ");
-                    String newLastName = scanner.nextLine();
-
-                    System.out.print("Enter New Address: ");
-                    String newAddress = scanner.nextLine();
-
-                    System.out.print("Enter New City: ");
-                    String newCity = scanner.nextLine();
-
-                    System.out.print("Enter New State: ");
-                    String newState = scanner.nextLine();
-
-                    System.out.print("Enter New Zip: ");
-                    String newZip = scanner.nextLine();
-
-                    System.out.print("Enter New Phone Number: ");
-                    String newPhone = scanner.nextLine();
-
-                    System.out.print("Enter New Email: ");
-                    String newEmail = scanner.nextLine();
-
-                    Contact updatedContact = new Contact(newFirstName, newLastName, newAddress, newCity, newState, newZip, newPhone, newEmail);
-
-                    addressBook.editContact(editName, updatedContact);
+                    if (displayAddressBook != null) {
+                        displayAddressBook.displayContacts();
+                    } else {
+                        System.out.println("Address Book not found.");
+                    }
 
                     break;
 
                 case 4:
-
-                    System.out.print("Enter First Name to delete: ");
-                    String deleteName = scanner.nextLine();
-
-                    addressBook.deleteContact(deleteName);
-
-                    break;
-
-                case 5:
-
                     exit = true;
-                    System.out.println("Exiting Address Book...");
+                    System.out.println("Exiting Address Book System");
                     break;
 
                 default:
-
-                    System.out.println("Invalid option.");
-
+                    System.out.println("Invalid option");
             }
-
         }
 
         scanner.close();
