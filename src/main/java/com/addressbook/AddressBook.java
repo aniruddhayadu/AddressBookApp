@@ -164,4 +164,14 @@ public class AddressBook {
 
         System.out.println("Number of contacts in state " + state + " : " + count);
     }
+    
+ // UC11 - Sort contacts by First Name
+    public void sortContactsByName() {
+
+        contactList.sort((c1, c2) ->
+                c1.getFirstName().compareToIgnoreCase(c2.getFirstName()));
+
+        System.out.println("Contacts sorted by first name:");
+        displayContacts();
+    }
 }
