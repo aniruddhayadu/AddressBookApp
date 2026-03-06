@@ -16,4 +16,22 @@ public class AddressBook {
             System.out.println(contact);
         }
     }
+
+    // UC3: Edit Contact
+    public void editContact(String firstName, Contact updatedContact) {
+        boolean found = false;
+
+        for (int i = 0; i < contactList.size(); i++) {
+            if (contactList.get(i).getFirstName().equalsIgnoreCase(firstName)) {
+                contactList.set(i, updatedContact);
+                found = true;
+                System.out.println("Contact updated successfully.");
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Contact not found.");
+        }
+    }
 }
