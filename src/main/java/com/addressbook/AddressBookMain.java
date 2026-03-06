@@ -27,7 +27,10 @@ public class AddressBookMain {
             System.out.println("9 Count persons by City");
             System.out.println("10 Count persons by State");
             System.out.println("11 Sort Contacts by Name");
-            System.out.println("12 Exit");
+            System.out.println("12 Sort by City");
+            System.out.println("13 Sort by State");
+            System.out.println("13 Sort by State");
+            System.out.println("15 Exit");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -152,8 +155,44 @@ public class AddressBookMain {
 
                     addressBook.viewPersonsByState(stateView);
                     break;
-
+                    
                 case 9:
+
+                    System.out.print("Enter City: ");
+                    String cityCount = scanner.nextLine();
+
+                    addressBook.countByCity(cityCount);
+                    break;
+
+
+                case 10:
+
+                    System.out.print("Enter State: ");
+                    String stateCount = scanner.nextLine();
+
+                    addressBook.countByState(stateCount);
+                    break;
+                    
+                case 11:
+
+                    addressBook.sortContactsByName();
+                    break;
+
+                case 12:
+
+                    addressBook.sortByCity();
+                    break;
+
+                case 13:
+
+                    addressBook.sortByState();
+                    break;
+
+                case 14:
+
+                    addressBook.sortByZip();
+                    break;
+                case 15:
 
                     exit = true;
                     System.out.println("Exiting Address Book...");

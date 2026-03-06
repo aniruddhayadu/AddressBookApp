@@ -165,7 +165,7 @@ public class AddressBook {
         System.out.println("Number of contacts in state " + state + " : " + count);
     }
     
- // UC11 - Sort contacts by First Name
+    // UC11 - Sort contacts by First Name
     public void sortContactsByName() {
 
         contactList.sort((c1, c2) ->
@@ -174,4 +174,38 @@ public class AddressBook {
         System.out.println("Contacts sorted by first name:");
         displayContacts();
     }
+    
+    
+    // UC12 - Sort contacts by City
+    public void sortByCity() {
+
+        contactList.sort((c1, c2) ->
+                c1.getCity().compareToIgnoreCase(c2.getCity()));
+
+        System.out.println("Contacts sorted by City:");
+        displayContacts();
+    }
+
+
+    // UC12 - Sort contacts by State
+    public void sortByState() {
+
+        contactList.sort((c1, c2) ->
+                c1.getState().compareToIgnoreCase(c2.getState()));
+
+        System.out.println("Contacts sorted by State:");
+        displayContacts();
+    }
+
+
+    // UC12 - Sort contacts by Zip
+    public void sortByZip() {
+
+        contactList.sort((c1, c2) ->
+                c1.getZip().compareToIgnoreCase(c2.getZip()));
+
+        System.out.println("Contacts sorted by Zip:");
+        displayContacts();
+    }
+    
 }
