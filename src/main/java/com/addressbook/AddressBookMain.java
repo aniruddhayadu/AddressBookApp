@@ -22,7 +22,9 @@ public class AddressBookMain {
             System.out.println("4 Delete Contact");
             System.out.println("5 Search by City");
             System.out.println("6 Search by State");
-            System.out.println("7 Exit");
+            System.out.println("7 View Persons by City");
+            System.out.println("8 View Persons by State");
+            System.out.println("9 Exit");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -131,8 +133,24 @@ public class AddressBookMain {
                     addressBook.searchByState(searchState);
 
                     break;
-
+                    
                 case 7:
+
+                    System.out.print("Enter City: ");
+                    String cityView = scanner.nextLine();
+
+                    addressBook.viewPersonsByCity(cityView);
+                    break;
+
+                case 8:
+
+                    System.out.print("Enter State: ");
+                    String stateView = scanner.nextLine();
+
+                    addressBook.viewPersonsByState(stateView);
+                    break;
+
+                case 9:
 
                     exit = true;
                     System.out.println("Exiting Address Book...");
