@@ -1,17 +1,21 @@
 package com.addressbook;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.File;
 
 public class AddressBook {
 
     private ArrayList<Contact> contactList = new ArrayList<>();
 
-    // UC7 Duplicate Check + UC2 Add Contact
+    // UC2 + UC7
     public void addContact(Contact contact) {
 
         for (Contact c : contactList) {
             if (c.getFirstName().equalsIgnoreCase(contact.getFirstName())) {
-                System.out.println("Contact with this name already exists.");
+                System.out.println("Contact already exists.");
                 return;
             }
         }
@@ -20,28 +24,22 @@ public class AddressBook {
         System.out.println("Contact added successfully.");
     }
 
-    // Display contacts
+    // UC2
     public void displayContacts() {
-
-        if (contactList.isEmpty()) {
-            System.out.println("No contacts found.");
-            return;
-        }
-
-        for (Contact contact : contactList) {
-            System.out.println(contact);
+        for (Contact c : contactList) {
+            System.out.println(c);
         }
     }
 
-    // UC3 Edit Contact
-    public void editContact(String firstName, Contact updatedContact) {
+    // UC3
+    public void editContact(String name, Contact updated) {
 
         for (int i = 0; i < contactList.size(); i++) {
 
-            if (contactList.get(i).getFirstName().equalsIgnoreCase(firstName)) {
+            if (contactList.get(i).getFirstName().equalsIgnoreCase(name)) {
 
-                contactList.set(i, updatedContact);
-                System.out.println("Contact updated successfully.");
+                contactList.set(i, updated);
+                System.out.println("Contact updated.");
                 return;
             }
         }
@@ -49,163 +47,167 @@ public class AddressBook {
         System.out.println("Contact not found.");
     }
 
-    // UC4 Delete Contact
-    public void deleteContact(String firstName) {
+    // UC4
+    public void deleteContact(String name) {
 
-        boolean removed = contactList.removeIf(contact ->
-                contact.getFirstName().equalsIgnoreCase(firstName));
+        contactList.removeIf(c ->
+                c.getFirstName().equalsIgnoreCase(name));
 
-        if (removed)
-            System.out.println("Contact deleted successfully.");
-        else
-            System.out.println("Contact not found.");
+        System.out.println("Contact deleted if existed.");
     }
 
-    // UC8 Search by City
+    // UC8
     public void searchByCity(String city) {
 
-        boolean found = false;
+        for (Contact c : contactList) {
 
-        for (Contact contact : contactList) {
-
-            if (contact.getCity().equalsIgnoreCase(city)) {
-                System.out.println(contact);
-                found = true;
+            if (c.getCity().equalsIgnoreCase(city)) {
+                System.out.println(c);
             }
         }
-
-        if (!found)
-            System.out.println("No contacts found in city: " + city);
     }
 
-    // UC8 Search by State
+    // UC8
     public void searchByState(String state) {
 
-        boolean found = false;
+        for (Contact c : contactList) {
 
-        for (Contact contact : contactList) {
-
-            if (contact.getState().equalsIgnoreCase(state)) {
-                System.out.println(contact);
-                found = true;
+            if (c.getState().equalsIgnoreCase(state)) {
+                System.out.println(c);
             }
         }
-
-        if (!found)
-            System.out.println("No contacts found in state: " + state);
     }
-    
-    
- // UC9 - View persons by City
+
+    // UC9
     public void viewPersonsByCity(String city) {
 
-        boolean found = false;
+        for (Contact c : contactList) {
 
-        for (Contact contact : contactList) {
-
-            if (contact.getCity().equalsIgnoreCase(city)) {
-                System.out.println(contact);
-                found = true;
+            if (c.getCity().equalsIgnoreCase(city)) {
+                System.out.println(c);
             }
-        }
-
-        if (!found) {
-            System.out.println("No contacts found in city: " + city);
         }
     }
 
-
-    // UC9 - View persons by State
+    // UC9
     public void viewPersonsByState(String state) {
 
-        boolean found = false;
+        for (Contact c : contactList) {
 
-        for (Contact contact : contactList) {
-
-            if (contact.getState().equalsIgnoreCase(state)) {
-                System.out.println(contact);
-                found = true;
+            if (c.getState().equalsIgnoreCase(state)) {
+                System.out.println(c);
             }
         }
-
-        if (!found) {
-            System.out.println("No contacts found in state: " + state);
-        }
     }
-    
-    
- // UC10 - Count contacts by City
+
+    // UC10
     public void countByCity(String city) {
 
         int count = 0;
 
-        for (Contact contact : contactList) {
-
-            if (contact.getCity().equalsIgnoreCase(city)) {
+        for (Contact c : contactList) {
+            if (c.getCity().equalsIgnoreCase(city)) {
                 count++;
             }
         }
 
-        System.out.println("Number of contacts in city " + city + " : " + count);
+        System.out.println("Persons in city " + city + " : " + count);
     }
 
-
-    // UC10 - Count contacts by State
+    // UC10
     public void countByState(String state) {
 
         int count = 0;
 
-        for (Contact contact : contactList) {
-
-            if (contact.getState().equalsIgnoreCase(state)) {
+        for (Contact c : contactList) {
+            if (c.getState().equalsIgnoreCase(state)) {
                 count++;
             }
         }
 
-        System.out.println("Number of contacts in state " + state + " : " + count);
+        System.out.println("Persons in state " + state + " : " + count);
     }
-    
-    // UC11 - Sort contacts by First Name
+
+    // UC11
     public void sortContactsByName() {
 
         contactList.sort((c1, c2) ->
                 c1.getFirstName().compareToIgnoreCase(c2.getFirstName()));
 
-        System.out.println("Contacts sorted by first name:");
         displayContacts();
     }
-    
-    
-    // UC12 - Sort contacts by City
+
+    // UC12
     public void sortByCity() {
 
         contactList.sort((c1, c2) ->
                 c1.getCity().compareToIgnoreCase(c2.getCity()));
 
-        System.out.println("Contacts sorted by City:");
         displayContacts();
     }
 
-
-    // UC12 - Sort contacts by State
+    // UC12
     public void sortByState() {
 
         contactList.sort((c1, c2) ->
                 c1.getState().compareToIgnoreCase(c2.getState()));
 
-        System.out.println("Contacts sorted by State:");
         displayContacts();
     }
 
-
-    // UC12 - Sort contacts by Zip
+    // UC12
     public void sortByZip() {
 
         contactList.sort((c1, c2) ->
                 c1.getZip().compareToIgnoreCase(c2.getZip()));
 
-        System.out.println("Contacts sorted by Zip:");
         displayContacts();
     }
-    
+
+    // UC13 Write File
+    public void writeContactsToFile() {
+
+        try {
+
+            FileWriter fw = new FileWriter("addressbook.txt");
+            PrintWriter pw = new PrintWriter(fw);
+
+            for (Contact c : contactList) {
+
+                pw.println(c.getFirstName() + "," +
+                        c.getLastName() + "," +
+                        c.getCity() + "," +
+                        c.getState());
+            }
+
+            pw.close();
+
+            System.out.println("Contacts written to file.");
+
+        } catch (Exception e) {
+
+            System.out.println("Error writing file.");
+        }
+    }
+
+    // UC13 Read File
+    public void readContactsFromFile() {
+
+        try {
+
+            File file = new File("addressbook.txt");
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+
+                System.out.println(scanner.nextLine());
+            }
+
+            scanner.close();
+
+        } catch (Exception e) {
+
+            System.out.println("Error reading file.");
+        }
+    }
 }

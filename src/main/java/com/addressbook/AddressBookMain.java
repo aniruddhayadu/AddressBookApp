@@ -9,14 +9,13 @@ public class AddressBookMain {
         Scanner scanner = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
 
-        System.out.println("Welcome to Address Book Program");
-
         boolean exit = false;
+
+        System.out.println("Welcome to Address Book Program");
 
         while (!exit) {
 
-            System.out.println("\nChoose an option:");
-            System.out.println("1 Add Contact");
+            System.out.println("\n1 Add Contact");
             System.out.println("2 Display Contacts");
             System.out.println("3 Edit Contact");
             System.out.println("4 Delete Contact");
@@ -29,8 +28,10 @@ public class AddressBookMain {
             System.out.println("11 Sort Contacts by Name");
             System.out.println("12 Sort by City");
             System.out.println("13 Sort by State");
-            System.out.println("13 Sort by State");
-            System.out.println("15 Exit");
+            System.out.println("14 Sort by Zip");
+            System.out.println("15 Write Contacts to File");
+            System.out.println("16 Read Contacts from File");
+            System.out.println("17 Exit");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -39,167 +40,119 @@ public class AddressBookMain {
 
                 case 1:
 
-                    System.out.print("Enter First Name: ");
+                    System.out.print("First Name: ");
                     String firstName = scanner.nextLine();
 
-                    System.out.print("Enter Last Name: ");
+                    System.out.print("Last Name: ");
                     String lastName = scanner.nextLine();
 
-                    System.out.print("Enter Address: ");
+                    System.out.print("Address: ");
                     String address = scanner.nextLine();
 
-                    System.out.print("Enter City: ");
+                    System.out.print("City: ");
                     String city = scanner.nextLine();
 
-                    System.out.print("Enter State: ");
+                    System.out.print("State: ");
                     String state = scanner.nextLine();
 
-                    System.out.print("Enter Zip: ");
+                    System.out.print("Zip: ");
                     String zip = scanner.nextLine();
 
-                    System.out.print("Enter Phone Number: ");
+                    System.out.print("Phone: ");
                     String phone = scanner.nextLine();
 
-                    System.out.print("Enter Email: ");
+                    System.out.print("Email: ");
                     String email = scanner.nextLine();
 
-                    Contact contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
+                    Contact contact = new Contact(firstName, lastName, address,
+                            city, state, zip, phone, email);
 
                     addressBook.addContact(contact);
-
                     break;
 
                 case 2:
-
                     addressBook.displayContacts();
                     break;
 
                 case 3:
 
-                    System.out.print("Enter First Name to edit: ");
+                    System.out.print("Enter name to edit: ");
                     String editName = scanner.nextLine();
 
-                    System.out.println("Enter new details:");
+                    System.out.println("Enter new details");
 
-                    System.out.print("New First Name: ");
-                    String newFirst = scanner.nextLine();
+                    Contact updated = new Contact(
+                            scanner.nextLine(),
+                            scanner.nextLine(),
+                            scanner.nextLine(),
+                            scanner.nextLine(),
+                            scanner.nextLine(),
+                            scanner.nextLine(),
+                            scanner.nextLine(),
+                            scanner.nextLine()
+                    );
 
-                    System.out.print("New Last Name: ");
-                    String newLast = scanner.nextLine();
-
-                    System.out.print("New Address: ");
-                    String newAddress = scanner.nextLine();
-
-                    System.out.print("New City: ");
-                    String newCity = scanner.nextLine();
-
-                    System.out.print("New State: ");
-                    String newState = scanner.nextLine();
-
-                    System.out.print("New Zip: ");
-                    String newZip = scanner.nextLine();
-
-                    System.out.print("New Phone: ");
-                    String newPhone = scanner.nextLine();
-
-                    System.out.print("New Email: ");
-                    String newEmail = scanner.nextLine();
-
-                    Contact updatedContact =
-                            new Contact(newFirst, newLast, newAddress, newCity,
-                                    newState, newZip, newPhone, newEmail);
-
-                    addressBook.editContact(editName, updatedContact);
-
+                    addressBook.editContact(editName, updated);
                     break;
 
                 case 4:
 
-                    System.out.print("Enter First Name to delete: ");
-                    String deleteName = scanner.nextLine();
-
-                    addressBook.deleteContact(deleteName);
-
+                    System.out.print("Enter name to delete: ");
+                    addressBook.deleteContact(scanner.nextLine());
                     break;
 
                 case 5:
-
-                    System.out.print("Enter City: ");
-                    String searchCity = scanner.nextLine();
-
-                    addressBook.searchByCity(searchCity);
-
+                    addressBook.searchByCity(scanner.nextLine());
                     break;
 
                 case 6:
-
-                    System.out.print("Enter State: ");
-                    String searchState = scanner.nextLine();
-
-                    addressBook.searchByState(searchState);
-
+                    addressBook.searchByState(scanner.nextLine());
                     break;
-                    
+
                 case 7:
-
-                    System.out.print("Enter City: ");
-                    String cityView = scanner.nextLine();
-
-                    addressBook.viewPersonsByCity(cityView);
+                    addressBook.viewPersonsByCity(scanner.nextLine());
                     break;
 
                 case 8:
-
-                    System.out.print("Enter State: ");
-                    String stateView = scanner.nextLine();
-
-                    addressBook.viewPersonsByState(stateView);
+                    addressBook.viewPersonsByState(scanner.nextLine());
                     break;
-                    
+
                 case 9:
-
-                    System.out.print("Enter City: ");
-                    String cityCount = scanner.nextLine();
-
-                    addressBook.countByCity(cityCount);
+                    addressBook.countByCity(scanner.nextLine());
                     break;
-
 
                 case 10:
-
-                    System.out.print("Enter State: ");
-                    String stateCount = scanner.nextLine();
-
-                    addressBook.countByState(stateCount);
+                    addressBook.countByState(scanner.nextLine());
                     break;
-                    
-                case 11:
 
+                case 11:
                     addressBook.sortContactsByName();
                     break;
 
                 case 12:
-
                     addressBook.sortByCity();
                     break;
 
                 case 13:
-
                     addressBook.sortByState();
                     break;
 
                 case 14:
-
                     addressBook.sortByZip();
                     break;
-                case 15:
 
+                case 15:
+                    addressBook.writeContactsToFile();
+                    break;
+
+                case 16:
+                    addressBook.readContactsFromFile();
+                    break;
+
+                case 17:
                     exit = true;
                     System.out.println("Exiting Address Book...");
                     break;
-
-                default:
-                    System.out.println("Invalid choice.");
             }
         }
 
