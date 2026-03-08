@@ -269,4 +269,17 @@ public class AddressBook {
 		int count = dbService.getCountOfContactsByState(state);
 		System.out.println("Total contacts in state " + state + " in DB: " + count);
 	}
+
+	// UC20: Add contact to Database
+	public void addContactToDatabase(Contact contact) {
+		AddressBookDBService dbService = new AddressBookDBService();
+		boolean result = dbService.addContactToDatabase(contact);
+		if (result) {
+			System.out.println("Contact successfully added to Database!");
+			// Local list mein bhi add kar dete hain sync rakhne ke liye
+			contactList.add(contact);
+		} else {
+			System.out.println("Failed to add contact to Database.");
+		}
+	}
 }

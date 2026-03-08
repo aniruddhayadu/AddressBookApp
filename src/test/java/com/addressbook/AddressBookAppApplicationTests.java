@@ -45,4 +45,13 @@ class AddressBookAppApplicationTests {
 		int count = service.getCountOfContactsByCity("Indore");
 		assertTrue(count >= 0);
 	}
+	
+	// UC 20
+	@Test
+	void givenNewContact_WhenAddedToDB_ShouldSyncWithDatabase() {
+	    AddressBookDBService service = new AddressBookDBService();
+	    Contact contact = new Contact("Rahul", "Sharma", "Vijay Nagar", "Indore", "MP", "452010", "9876543210", "rahul@test.com");
+	    boolean result = service.addContactToDatabase(contact);
+	    assertTrue(result);
+	}
 }

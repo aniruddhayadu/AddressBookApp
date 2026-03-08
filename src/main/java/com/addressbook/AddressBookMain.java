@@ -2,6 +2,8 @@ package com.addressbook;
 
 import java.util.Scanner;
 
+import sun.jvm.hotspot.gc.parallel.PSYoungGen;
+
 /*
  * Main class running AddressBook program
  */
@@ -42,11 +44,12 @@ public class AddressBookMain {
 			System.out.println("21 Read Contacts from MySQL Database");
 			System.out.println("22 Update Contact City in Database");
 			System.out.println("23 Retrieve Contacts by Date Range");
-			System.out.println("24 View Contacts Grouped by City");
-			System.out.println("25 View Contacts Grouped by State");
-			System.out.println("26 Count Contacts by City in DB");
-			System.out.println("27 Count Contacts by State in DB");
-			System.out.println("28 Exit");
+			System.out.println("24 Add Contact to Database");
+			System.out.println("25 View Contacts Grouped by City");
+			System.out.println("26 View Contacts Grouped by State");
+			System.out.println("27 Count Contacts by City in DB");
+			System.out.println("28 Count Contacts by State in DB");
+			System.out.println("29 Exit");
 
 			System.out.print("Enter Choice: ");
 
@@ -241,32 +244,47 @@ public class AddressBookMain {
 				addressBook.getContactsBetweenDates(startDate, endDate);
 				break;
 
-			// View Grouped by City
 			case 24:
+			    System.out.println("--- Add Contact to Database ---");
+			    System.out.print("First Name: "); String fn = scanner.nextLine();
+			    System.out.print("Last Name: "); String ln = scanner.nextLine();
+			    System.out.print("Address: "); String addr = scanner.nextLine();
+			    System.out.print("City: "); String ci = scanner.nextLine();
+			    System.out.print("State: "); String st = scanner.nextLine();
+			    System.out.print("Zip: "); String zp = scanner.nextLine();
+			    System.out.print("Phone: "); String ph = scanner.nextLine();
+			    System.out.print("Email: "); String em = scanner.nextLine();
+
+			    Contact newDBContact = new Contact(fn, ln, addr, ci, st, zp, ph, em);
+			    addressBook.addContactToDatabase(newDBContact);
+			    break;
+			    
+			// View Grouped by City
+			case 25:
 				addressBook.displayContactsByCity();
 				break;
 
 			// View Grouped by State
-			case 25:
+			case 26:
 				addressBook.displayContactsByState();
 				break;
 
 			// UC19: Count Contacts by City in DB
-			case 26:
+			case 27:
 				System.out.print("Enter City to count in DB: ");
 				String dbCityCount = scanner.nextLine();
 				addressBook.countContactsByCityInDB(dbCityCount);
 				break;
 
 			// UC19: Count Contacts by State in DB
-			case 27:
+			case 28:
 				System.out.print("Enter State to count in DB: ");
 				String dbStateCount = scanner.nextLine();
 				addressBook.countContactsByStateInDB(dbStateCount);
 				break;
 
 			// Exit Program
-			case 28:
+			case 29:
 				exit = true;
 				System.out.println("Exiting Address Book...");
 				break;
