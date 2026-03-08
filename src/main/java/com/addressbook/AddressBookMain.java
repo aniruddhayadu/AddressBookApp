@@ -32,7 +32,8 @@ public class AddressBookMain {
             System.out.println("15 Write Contacts to File");
             System.out.println("16 Read Contacts from File");
             System.out.println("17 Exit");
-
+            
+            System.out.println("Enter Choice.  ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
