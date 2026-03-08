@@ -13,6 +13,8 @@ public class AddressBookMain {
 
         System.out.println("Welcome to Address Book Program");
 
+        System.out.println("Enter Choice.  ");
+
         while (!exit) {
 
             System.out.println("\n1 Add Contact");
@@ -31,8 +33,10 @@ public class AddressBookMain {
             System.out.println("14 Sort by Zip");
             System.out.println("15 Write Contacts to File");
             System.out.println("16 Read Contacts from File");
-            System.out.println("17 Exit");
-
+            System.out.println("17 Write Contacts to CSV");
+            System.out.println("18 Read Contacts from CSV");
+            System.out.println("19 Exit");
+            
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -150,6 +154,13 @@ public class AddressBookMain {
                     break;
 
                 case 17:
+                    addressBook.writeContactsToCSV();
+                    break;
+
+                case 18:
+                    addressBook.readContactsFromCSV();
+                    break;
+                case 19:
                     exit = true;
                     System.out.println("Exiting Address Book...");
                     break;

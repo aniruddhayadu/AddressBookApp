@@ -210,4 +210,61 @@ public class AddressBook {
             System.out.println("Error reading file.");
         }
     }
+    
+ // UC14 Write CSV File
+    public void writeContactsToCSV() {
+
+        try {
+
+            FileWriter writer = new FileWriter("addressbook.csv");
+
+            writer.append("FirstName,LastName,Address,City,State,Zip,Phone,Email\n");
+
+            for (Contact c : contactList) {
+
+                writer.append(c.getFirstName()).append(",");
+                writer.append(c.getLastName()).append(",");
+                writer.append(c.getAddress()).append(",");
+                writer.append(c.getCity()).append(",");
+                writer.append(c.getState()).append(",");
+                writer.append(c.getZip()).append(",");
+                writer.append(c.getPhoneNumber()).append(",");
+                writer.append(c.getEmail()).append("\n");
+
+            }
+
+            writer.flush();
+            writer.close();
+
+            System.out.println("Contacts written to CSV file.");
+
+        } catch (Exception e) {
+
+            System.out.println("Error writing CSV file.");
+        }
+    }
+    
+ // UC14 Read CSV File
+    public void readContactsFromCSV() {
+
+        try {
+
+            File file = new File("addressbook.csv");
+            Scanner scanner = new Scanner(file);
+
+            System.out.println("Reading CSV File:");
+
+            while (scanner.hasNextLine()) {
+
+                System.out.println(scanner.nextLine());
+
+            }
+
+            scanner.close();
+
+        } catch (Exception e) {
+
+            System.out.println("Error reading CSV file.");
+        }
+    }
 }
