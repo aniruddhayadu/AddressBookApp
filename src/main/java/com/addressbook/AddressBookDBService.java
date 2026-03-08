@@ -149,4 +149,22 @@ public class AddressBookDBService {
 		}
 		return false;
 	}
+
+	// UC 21: Add multiple contacts to DB using Threads
+	public void addMultipleContactsToDB(List<Contact> contactList) {
+		contactList.forEach(contact -> {
+			Runnable task = () -> {
+				System.out.println("Contact being added: " + Thread.currentThread().getName());
+				this.addContactToDatabase(contact);
+				System.out.println("Contact added: " + Thread.currentThread().getName());
+			};
+			Thread thread = new Thread(task, contact.getFirstName());
+			thread.start();
+			try {
+				thread.join(); // Wait for thread to finish
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+	}
 }

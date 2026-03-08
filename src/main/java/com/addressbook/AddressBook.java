@@ -282,4 +282,10 @@ public class AddressBook {
 			System.out.println("Failed to add contact to Database.");
 		}
 	}
+
+	// UC 21: Multi-threading logic
+	public void addMultipleContactsWithThreads(List<Contact> contacts) {
+		AddressBookDBService dbService = new AddressBookDBService();
+		dbService.addMultipleContactsToDB(contacts);
+	}
 }
