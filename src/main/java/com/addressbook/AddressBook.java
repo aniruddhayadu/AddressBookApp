@@ -280,4 +280,16 @@ public class AddressBook {
 		contacts.forEach(System.out::println);
 	}
 
+	// UC17 Update contact in database
+	public void updateContactCityInDatabase(String name, String city) {
+
+		AddressBookDBService dbService = new AddressBookDBService();
+
+		boolean result = dbService.updateContactCity(name, city);
+
+		if (result)
+			System.out.println("Contact updated successfully in database.");
+		else
+			System.out.println("Contact not found in database.");
+	}
 }

@@ -64,4 +64,23 @@ public class AddressBookDBService {
 		return contactList;
 	}
 
+	// UC17 Update Contact in Database
+	public boolean updateContactCity(String firstName, String city) {
+
+		String query = "UPDATE address_book SET city = '" + city + "' WHERE first_name = '" + firstName + "'";
+
+		try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
+
+			int rowsAffected = statement.executeUpdate(query);
+
+			return rowsAffected > 0;
+
+		} catch (Exception e) {
+
+			System.out.println("Error updating contact: " + e.getMessage());
+		}
+
+		return false;
+	}
+
 }
