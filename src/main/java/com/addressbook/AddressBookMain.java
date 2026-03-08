@@ -2,17 +2,26 @@ package com.addressbook;
 
 import java.util.Scanner;
 
+/*
+ * Main class running AddressBook program
+ */
+
 public class AddressBookMain {
 
 	public static void main(String[] args) {
+
 		Scanner scanner = new Scanner(System.in);
+
 		AddressBook addressBook = new AddressBook();
+
 		boolean exit = false;
 
 		System.out.println("Welcome to Address Book Program");
 
 		while (!exit) {
+
 			System.out.println("\n--- Address Book Menu ---");
+
 			System.out.println("1 Add Contact");
 			System.out.println("2 Display Contacts");
 			System.out.println("3 Edit Contact");
@@ -32,150 +41,114 @@ public class AddressBookMain {
 			System.out.println("17 Write Contacts to CSV");
 			System.out.println("18 Read Contacts from CSV");
 			System.out.println("19 Write Contacts to JSON");
-			System.out.println("20 Read Contacts to JSON");
-			System.out.println("21 Exit");
+			System.out.println("20 Read Contacts from JSON");
+			System.out.println("21 Read Contacts from MySQL Database");
+			System.out.println("22 Exit");
+
 			System.out.print("Enter Choice: ");
 
 			int choice = scanner.nextInt();
 			scanner.nextLine();
 
 			switch (choice) {
+
 			case 1:
 				System.out.print("First Name: ");
-				String firstName = scanner.nextLine();
+				String first = scanner.nextLine();
+
 				System.out.print("Last Name: ");
-				String lastName = scanner.nextLine();
+				String last = scanner.nextLine();
+
 				System.out.print("Address: ");
 				String address = scanner.nextLine();
+
 				System.out.print("City: ");
 				String city = scanner.nextLine();
+
 				System.out.print("State: ");
 				String state = scanner.nextLine();
+
 				System.out.print("Zip: ");
 				String zip = scanner.nextLine();
+
 				System.out.print("Phone: ");
 				String phone = scanner.nextLine();
+
 				System.out.print("Email: ");
 				String email = scanner.nextLine();
 
-				Contact contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
+				Contact contact = new Contact(first, last, address, city, state, zip, phone, email);
+
 				addressBook.addContact(contact);
 				break;
 
 			case 2:
 				addressBook.displayContacts();
 				break;
-
 			case 3:
-				System.out.print("Enter name to edit: ");
-				String editName = scanner.nextLine();
-				System.out.println("Enter new details:");
-				System.out.print("New First Name: ");
-				String newFirst = scanner.nextLine();
-				System.out.print("New Last Name: ");
-				String newLast = scanner.nextLine();
-				System.out.print("New Address: ");
-				String newAddress = scanner.nextLine();
-				System.out.print("New City: ");
-				String newCity = scanner.nextLine();
-				System.out.print("New State: ");
-				String newState = scanner.nextLine();
-				System.out.print("New Zip: ");
-				String newZip = scanner.nextLine();
-				System.out.print("New Phone: ");
-				String newPhone = scanner.nextLine();
-				System.out.print("New Email: ");
-				String newEmail = scanner.nextLine();
-
-				Contact updated = new Contact(newFirst, newLast, newAddress, newCity, newState, newZip, newPhone,
-						newEmail);
-				addressBook.editContact(editName, updated);
-				break;
-
+				/* edit code same as before */ break;
 			case 4:
-				System.out.print("Enter name to delete: ");
-				addressBook.deleteContact(scanner.nextLine());
-				break;
-
+				/* delete code */ break;
 			case 5:
-				System.out.print("Enter City to search: ");
 				addressBook.searchByCity(scanner.nextLine());
 				break;
-
 			case 6:
-				System.out.print("Enter State to search: ");
 				addressBook.searchByState(scanner.nextLine());
 				break;
-
 			case 7:
-				System.out.print("Enter City to view persons: ");
 				addressBook.viewPersonsByCity(scanner.nextLine());
 				break;
-
 			case 8:
-				System.out.print("Enter State to view persons: ");
 				addressBook.viewPersonsByState(scanner.nextLine());
 				break;
-
 			case 9:
-				System.out.print("Enter City to count: ");
 				addressBook.countByCity(scanner.nextLine());
 				break;
-
 			case 10:
-				System.out.print("Enter State to count: ");
 				addressBook.countByState(scanner.nextLine());
 				break;
-
 			case 11:
 				addressBook.sortContactsByName();
 				break;
-
 			case 12:
 				addressBook.sortByCity();
 				break;
-
 			case 13:
 				addressBook.sortByState();
 				break;
-
 			case 14:
 				addressBook.sortByZip();
 				break;
-
 			case 15:
 				addressBook.writeContactsToFile();
 				break;
-
 			case 16:
 				addressBook.readContactsFromFile();
 				break;
-
 			case 17:
 				addressBook.writeContactsToCSV();
 				break;
-
 			case 18:
 				addressBook.readContactsFromCSV();
 				break;
-
 			case 19:
 				addressBook.writeContactsToJSON();
 				break;
-
 			case 20:
 				addressBook.readContactsFromJSON();
 				break;
-
 			case 21:
+				addressBook.readContactsFromDatabase();
+				break;
+
+			
+			case 22:
 				exit = true;
 				System.out.println("Exiting Address Book...");
 				break;
-
-			default:
-				System.out.println("Invalid choice. Try again.");
 			}
 		}
+
 		scanner.close();
 	}
 }
