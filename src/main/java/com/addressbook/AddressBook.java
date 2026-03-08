@@ -292,4 +292,17 @@ public class AddressBook {
 		else
 			System.out.println("Contact not found in database.");
 	}
+
+	// UC18 Retrieve contacts between dates
+	public void getContactsBetweenDates(String startDate, String endDate) {
+
+		AddressBookDBService service = new AddressBookDBService();
+
+		List<Contact> contacts = service.getContactsByDateRange(startDate, endDate);
+
+		System.out.println("\nContacts between dates:");
+
+		for (Contact c : contacts)
+			System.out.println(c);
+	}
 }

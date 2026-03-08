@@ -1,5 +1,6 @@
 package com.addressbook;
 
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -83,4 +84,37 @@ public class AddressBookDBService {
 		return false;
 	}
 
+	// UC18 Retrieve contacts by date range
+	public List<Contact> getContactsByDateRange(String startDate, String endDate) {
+
+		List<Contact> contacts = new ArrayList<>();
+
+		String query = "SELECT * FROM address_book WHERE date_added BETWEEN ? AND ?";
+
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement(query)) {
+
+			statement.setString(1, startDate);
+			statement.setString(2, endDate);
+
+			ResultSet rs = statement.executeQuery();
+
+			while (rs.next()) {
+
+				Contact contact = new Contact(
+
+						rs.getString("first_name"), rs.getString("last_name"), rs.getString("address"),
+						rs.getString("city"), rs.getString("state"), rs.getString("zip"), rs.getString("phone"),
+						rs.getString("email"));
+
+				contacts.add(contact);
+			}
+
+		} catch (Exception e) {
+
+			System.out.println("Error retrieving contacts: " + e.getMessage());
+		}
+
+		return contacts;
+	}
 }

@@ -44,7 +44,8 @@ public class AddressBookMain {
 			System.out.println("20 Read Contacts from JSON");
 			System.out.println("21 Read Contacts from MySQL Database");
 			System.out.println("22 Update Contact City in Database");
-			System.out.println("23 Exit");
+			System.out.println("23 Retrieve Contacts by Date Range");
+			System.out.println("24 Exit");
 
 			System.out.print("Enter Choice: ");
 
@@ -146,14 +147,21 @@ public class AddressBookMain {
 
 				System.out.print("Enter First Name: ");
 				String name = scanner.nextLine();
-
 				System.out.print("Enter New City: ");
 				String newCity = scanner.nextLine();
-
 				addressBook.updateContactCityInDatabase(name, newCity);
-
 				break;
-			case 23:
+
+			case 23: {
+				System.out.print("Enter Start Date (YYYY-MM-DD): ");
+				String startDate = scanner.nextLine();
+				System.out.print("Enter End Date (YYYY-MM-DD): ");
+				String endDate = scanner.nextLine();
+				addressBook.getContactsBetweenDates(startDate, endDate);
+				break;
+			}
+
+			case 24:
 				exit = true;
 				System.out.println("Exiting Address Book...");
 				break;

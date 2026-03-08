@@ -34,4 +34,14 @@ class AddressBookAppApplicationTests {
 		assertTrue(result);
 	}
 
+	@Test
+	void givenDateRange_whenRetrieved_shouldReturnContacts() {
+
+		AddressBookDBService service = new AddressBookDBService();
+
+		List<Contact> contacts = service.getContactsByDateRange("2024-01-01", "2024-12-31");
+
+		assertTrue(contacts.size() > 0);
+	}
+
 }
