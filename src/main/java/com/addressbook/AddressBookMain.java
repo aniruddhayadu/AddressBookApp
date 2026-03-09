@@ -307,24 +307,24 @@ public class AddressBookMain {
         			String lName = scanner.nextLine();
         
         			System.out.print("Address: ");
-        			String addr = scanner.nextLine();
+        			String addr1 = scanner.nextLine();
         
         			System.out.print("City: ");
-        			String city = scanner.nextLine();
+        			String city1 = scanner.nextLine();
         
         			System.out.print("State: ");
-        			String state = scanner.nextLine();
+        			String state1 = scanner.nextLine();
         
         			System.out.print("Zip: ");
-        			String zip = scanner.nextLine();
+        			String zip1 = scanner.nextLine();
         
         			System.out.print("Phone: ");
-        			String phone = scanner.nextLine();
+        			String phone1 = scanner.nextLine();
         
         			System.out.print("Email: ");
-        			String email = scanner.nextLine();
+        			String email1 = scanner.nextLine();
 
-        			threadContacts.add(new Contact(fName, lName, addr, city, state, zip, phone, email));
+        			threadContacts.add(new Contact(fName, lName, addr1, city1, state1, zip1, phone1, email1));
     			}
 
 					
