@@ -5,6 +5,8 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class AddressBookRESTAssuredTest {
@@ -81,4 +83,32 @@ public class AddressBookRESTAssuredTest {
 		System.out.println("UC 24: Updated City in JSON Server: " + updatedCity);
 		Assertions.assertEquals(newCity, updatedCity);
 	}
+	
+	@Test
+    public void givenContactToDelete_WhenDeleted_ShouldSyncWithAddressBook() {
+        AddressBook addressBook = new AddressBook();
+        
+        // 1. Pehle current data fetch karke count check karo
+        Response initialResponse = RestAssured.get("/contacts");
+        Contact[] initialContacts = initialResponse.as(Contact[].class);
+        int initialCount = initialContacts.length;
+        System.out.println("UC 25: Initial count before delete: " + initialCount);
+
+        // 2. API par DELETE request bhejo (ID 2 ko delete kar rahe hain - example Dhoni ya Rahul)
+        // Note: Make sure db.json mein id: "2" wala contact ho
+        Response deleteResponse = RestAssured.delete("/contacts/2");
+
+        // Status code 200 OK ya 204 No Content aana chahiye success par
+        Assertions.assertEquals(200, deleteResponse.getStatusCode());
+
+        // 3. Verification: Sync check
+        Response finalResponse = RestAssured.get("/contacts");
+        Contact[] finalContacts = finalResponse.as(Contact[].class);
+        addressBook.setContactList(Arrays.asList(finalContacts));
+
+        System.out.println("UC 25: Final count after delete: " + addressBook.countEntries());
+        
+        // Count 1 se kam hona chahiye
+        Assertions.assertEquals(initialCount - 1, addressBook.countEntries());
+    }
 }
