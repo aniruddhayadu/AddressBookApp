@@ -288,4 +288,14 @@ public class AddressBook {
 		AddressBookDBService dbService = new AddressBookDBService();
 		dbService.addMultipleContactsToDB(contacts);
 	}
+
+	// UC 22 helper: Local memory sync with REST API data
+		public void setContactList(List<Contact> contactList) {
+		    this.contactList = new ArrayList<>(contactList);
+		}
+
+		// for Verification helper 
+		public long countEntries() {
+		    return this.contactList.size();
+		}
 }

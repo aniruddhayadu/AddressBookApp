@@ -56,7 +56,7 @@ public class AddressBookMain {
 
 			int choice = scanner.nextInt();
 			scanner.nextLine(); // Consume the newline character
-
+			
 			switch (choice) {
 
 			// UC1 & UC2: Add a new contact

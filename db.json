@@ -1,0 +1,15 @@
+{
+  "contacts": [
+    {
+      "id": "1",
+      "firstName": "Aditya",
+      "lastName": "Verma",
+      "address": "Vijay Nagar",
+      "city": "Indore",
+      "state": "MP",
+      "zip": "452010",
+      "phoneNumber": "9876543210",
+      "email": "aditya@test.com"
+    }
+  ]
+}
