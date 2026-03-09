@@ -57,18 +57,16 @@ public class AddressBookRESTAssuredTest {
 	public void givenNewCityForContact_WhenUpdated_ShouldSyncWithAddressBook() {
 		AddressBook addressBook = new AddressBook();
 
-		// 1. Pehle data fetch karo sync karne ke liye
+		// fetching data
 		Response response = RestAssured.get("/contacts");
 		Contact[] contacts = response.as(Contact[].class);
 		addressBook.setContactList(Arrays.asList(contacts));
 
-		// 2. Local memory mein city update karo (Example: Aditya ki city update karni
-		// hai)
+		// 2. Local memory update city
 		String contactName = "Aditya";
 		String newCity = "Mumbai";
 
-		// 3. API par PUT request bhejo (ID 1 man kar chal rahe hain)
-		// Note: Real scenario mein hum pehle contact ki id dhoondte hain
+		// 3. API par PUT request
 		Response updateResponse = RestAssured.given().contentType("application/json")
 				.body("{\"firstName\":\"Aditya\", \"lastName\":\"Jayswal\", \"city\":\"" + newCity
 						+ "\", \"state\":\"MH\", \"zip\":\"400001\"}")
@@ -88,17 +86,13 @@ public class AddressBookRESTAssuredTest {
     public void givenContactToDelete_WhenDeleted_ShouldSyncWithAddressBook() {
         AddressBook addressBook = new AddressBook();
         
-        // 1. Pehle current data fetch karke count check karo
         Response initialResponse = RestAssured.get("/contacts");
         Contact[] initialContacts = initialResponse.as(Contact[].class);
         int initialCount = initialContacts.length;
         System.out.println("UC 25: Initial count before delete: " + initialCount);
 
-        // 2. API par DELETE request bhejo (ID 2 ko delete kar rahe hain - example Dhoni ya Rahul)
-        // Note: Make sure db.json mein id: "2" wala contact ho
         Response deleteResponse = RestAssured.delete("/contacts/2");
 
-        // Status code 200 OK ya 204 No Content aana chahiye success par
         Assertions.assertEquals(200, deleteResponse.getStatusCode());
 
         // 3. Verification: Sync check
@@ -108,7 +102,6 @@ public class AddressBookRESTAssuredTest {
 
         System.out.println("UC 25: Final count after delete: " + addressBook.countEntries());
         
-        // Count 1 se kam hona chahiye
         Assertions.assertEquals(initialCount - 1, addressBook.countEntries());
     }
 }
