@@ -55,18 +55,16 @@ public class AddressBookRESTAssuredTest {
 	public void givenNewCityForContact_WhenUpdated_ShouldSyncWithAddressBook() {
 		AddressBook addressBook = new AddressBook();
 
-		// 1. Pehle data fetch karo sync karne ke liye
+		// 1. fetching data first 
 		Response response = RestAssured.get("/contacts");
 		Contact[] contacts = response.as(Contact[].class);
 		addressBook.setContactList(Arrays.asList(contacts));
 
-		// 2. Local memory mein city update karo (Example: Aditya ki city update karni
-		// hai)
+		// updating city in local memory
 		String contactName = "Aditya";
 		String newCity = "Mumbai";
 
-		// 3. API par PUT request bhejo (ID 1 man kar chal rahe hain)
-		// Note: Real scenario mein hum pehle contact ki id dhoondte hain
+		// 3. API par PUT request 
 		Response updateResponse = RestAssured.given().contentType("application/json")
 				.body("{\"firstName\":\"Aditya\", \"lastName\":\"Jayswal\", \"city\":\"" + newCity
 						+ "\", \"state\":\"MH\", \"zip\":\"400001\"}")
