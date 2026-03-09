@@ -76,6 +76,28 @@
       "zip": "834002",
       "phoneNumber": "8877665544",
       "email": "msd@test.com"
+    },
+    {
+      "id": "dc77",
+      "firstName": "Rahul",
+      "lastName": "Dravid",
+      "address": "Indiranagar",
+      "city": "Bangalore",
+      "state": "KA",
+      "zip": "560038",
+      "phoneNumber": "9988776655",
+      "email": "rahul@test.com"
+    },
+    {
+      "id": "6136",
+      "firstName": "MS",
+      "lastName": "Dhoni",
+      "address": "Harmu",
+      "city": "Ranchi",
+      "state": "JH",
+      "zip": "834002",
+      "phoneNumber": "8877665544",
+      "email": "msd@test.com"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
