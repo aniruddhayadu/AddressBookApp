@@ -14,6 +14,6 @@
 - Developed logic to map the result set into a `Map<String, Integer>` for easy display
 - Verified that the database counts match the application's internal data structures
 
-[Source Code](https://github.com/aniruddhayadu/AddressBookApp/tree/feature/UC19-CountContactsByCityAndState/src)
+[Source Code](https://github.com/aniruddhayadu/AddressBookApp/tree/UC19-count-contacts-by-city-state-db/src)
 
 ---
