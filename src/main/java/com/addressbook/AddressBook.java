@@ -290,12 +290,13 @@ public class AddressBook {
 	}
 
 	// UC 22 helper: Local memory sync with REST API data
-		public void setContactList(List<Contact> contactList) {
-		    this.contactList = new ArrayList<>(contactList);
-		}
+	public void setContactList(List<Contact> contactList) {
+		this.contactList = new ArrayList<>(contactList);
+	}
 
-		// for Verification helper 
-		public long countEntries() {
-		    return this.contactList.size();
-		}
+	// for Verification helper
+	public long countEntries() {
+		return this.contactList.size();
+	}
+
 }
