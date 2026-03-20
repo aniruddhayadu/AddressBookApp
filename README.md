@@ -1,12 +1,66 @@
-# Address Book Application
+# 📒 Address Book Application
+
+## 🚀 Project Overview
+
+The **Address Book Application** is a progressive Java-based project that evolves from basic contact management to advanced **database integration and REST API synchronization**.
+
+It demonstrates core software engineering concepts including:
+
+- Object-Oriented Programming (OOP)
+- Java Collections Framework
+- File Handling (TXT, CSV, JSON)
+- JDBC Database Integration
+- Multithreading
+- REST API Integration (JSON Server)
+
 ---
 
-## Introduction
-The Address Book Application is a Java project used to manage contact details.  
-It demonstrates concepts like **OOP, Collections, File Handling, JDBC, Multithreading, and REST API integration**.  
-The application evolves from basic contact management to database and JSON server integration.
+## 🧠 Key Highlights
+
+✅ Test-Driven Development (TDD)  
+✅ Feature Branch Workflow  
+✅ Clean Code & SOLID Principles  
+✅ DRY (Don’t Repeat Yourself)  
+✅ Scalable Architecture Evolution  
+✅ Multi-layer Data Persistence (File → DB → API)
 
 ---
+
+## 🌿 Git Workflow
+
+```
+main
+└── dev
+    ├── feature/uc1-CreateContacts
+    ├── feature/uc2-AddContact
+    ├── feature/uc3-PreventDuplicate
+    ├── feature/uc4-EditExistingContact
+    ├── feature/uc5-DeleteContact
+    ├── feature/uc6-MultipleAddressBooks
+    ├── feature/uc7-EnsureNoDuplicate
+    ├── feature/uc8-SearchPerson
+    ├── feature/uc9-ViewPersonByCityOrState
+    ├── feature/uc10-CountContactsByCity
+    ├── feature/uc11-SortContacts
+    ├── feature/uc12-SortByZip
+    ├── feature/uc13-ReadWriteFileIO
+    ├── feature/uc14-ReadWriteCSV
+    ├── feature/uc15-ReadWriteJSON
+    ├── feature/uc16-ReadDatabase
+    ├── feature/uc17-UpdateSyncDB
+    ├── feature/uc18-RetrieveByDateRange
+    ├── feature/uc19-CountByCityStateDB
+    ├── feature/uc20-AddContactToDB
+    ├── feature/uc21-MultithreadingDB
+    ├── feature/uc22-DatabaseNormalization
+    ├── feature/uc23-AddEntriesJSONServer
+    ├── feature/uc24-UpdateJSONServer
+    └── feature/uc25-DeleteJSONServer
+
+```
+
+---
+
 
 ## UC-1: Create Contact
 Create a **Contact class** to store contact details.
